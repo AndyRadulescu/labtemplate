@@ -25,8 +25,17 @@ app.use(cookieParser());
 // Controllers
 var index = require('./src/rest/index');
 var user = require('./src/rest/user');
+var comments = require('./src/rest/comment')
+var grandprix = require('./src/rest/grandprix')
+var ticket = require('./src/rest/ticket')
+var team = require('./src/rest/team')
+
 app.use('/api', index);
 app.use('/api/user', user);
+app.use('/api/comment',comments);
+app.use('/api/grandprix',grandprix);
+app.use('/api/ticket',ticket);
+app.use('/api/team',team);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -47,6 +56,6 @@ app.use(function(err, req, res, next) {
 app.use(function (err, req, res, next) {
   console.error(err.stack)
   res.status(500).send('Something broke!')
-})
+});
 
 module.exports = app;

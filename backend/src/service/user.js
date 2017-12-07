@@ -18,3 +18,7 @@ exports.findById = function (req, res) {
     res.jsonp(user);
   });
 };
+
+// exports.delte = function(req,res){
+//   user.delteAll();
+// }
