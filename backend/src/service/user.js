@@ -2,10 +2,14 @@
 
 const user = require('../models').user;
 
-exports.list = function (req, res) {
-  user.findAll().then(user => {
-    res.jsonp(user);
-  });
+exports.list = function (req, res, next) {
+  user.findAll({
+    where: req.query,
+    include: [{ all: true }]
+  }).then(user => {
+    res
+      .jsonp(user)  
+  }).catch(next);
 };
 
 exports.create = function (req, res) {
