@@ -14,6 +14,7 @@
 docker run --name postgresdb -p 32768:5432 -d postgres
 docker exec -it postgresdb psql --username postgres -c \ "CREATE DATABASE devdb OWNER postgres;"
 docker exec -it postgresdb psql --username postgres -c \ "GRANT ALL PRIVILEGES ON DATABASE devdb TO postgres;"
+docker exec -it postgresdb psql --username postgres -c "DROP DATABASE devdb"
 ```
 
 ### After install we need some npm utils so open the cli and type the following
