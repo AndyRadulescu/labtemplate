@@ -1,6 +1,7 @@
 "use strict";
 
 const comments = require('../models').comment;
+const user = require('../models').user;
 
 exports.list = function (req, res, next) {
   comments.findAll({
@@ -17,7 +18,17 @@ exports.create = function (req, res) {
 
 exports.findById = function (req, res) {
   let id = req.params.id;
-  comments.findById(id).then(comments => {
+  comments.findById(id, {
+    include: [{ model: user, as: 'user' }]
+  }).then(comments => {
     res.jsonp(comments);
   });
 };
+
+exports.findUser = function (req, res) {
+  comments.findById(req.params.id,{
+    include: [{ model: user, as: 'user'}]
+  }).then(user => {
+    res.jsonp(user);
+  })
+}

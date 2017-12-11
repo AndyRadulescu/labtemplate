@@ -5,13 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     userName: DataTypes.STRING,
     password: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  user.associate = (models) => {
+    console.log(models);
+    user.hasMany(models.comment, { foreignKey: 'userId' })
+  }
 
   return user;
 };

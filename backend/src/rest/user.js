@@ -4,7 +4,9 @@ var user = require('../service/').user;
 
 router.get('/', user.list);
 router.get('/:id', user.findById);
+//router.get('/:id/comments', user.findComments);
 router.post('/', user.create);
-//router.delete('/',user.delete);
+router.delete('/:id', user.delete);
+router.put('/:id', user.addNewPassword);
 
 module.exports = router;
