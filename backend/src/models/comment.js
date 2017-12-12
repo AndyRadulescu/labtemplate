@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     body: DataTypes.STRING
   });
   comment.associate = (models) => {
-    console.log(models);
-    comment.belongsTo(models.user, { foreignKey: 'userId', onDelete: 'CASCADE' })
+    console.log("-> comment belongs to user");
+    comment.belongsTo(models.user, { foreignKey: 'user_id', onDelete: 'CASCADE' });
   }
   return comment;
 };

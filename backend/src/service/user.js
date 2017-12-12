@@ -28,12 +28,24 @@ exports.findById = function (req, res) {
   });
 };
 
-// exports.findComments = function (req, res) {
-//   let id = req.params.id;
-//   user.findById(id).getComments().then(comment => {
-//     res.jsonp(comment);
-//   });
-// };
+exports.updateUser = function (req, res) {
+  let id = req.params.id;
+  console.log(id);
+  user.findById(req.params.id)
+    .then(user => {
+      if (!user) {
+        return res.status(400).send({
+          message: 'User Not Found'
+        });
+      }
+      user.update(req.body, {
+        where:
+          { id: id }
+      }).then(() => res.status(200).send())
+        .catch(error => res.status(400).send(error));
+    })
+    .catch(error => res.status(400).send(error));
+}
 
 exports.delete = function (req, res) {
   let id = req.params.id;
@@ -56,22 +68,3 @@ exports.delete = function (req, res) {
     })
     .catch(error => res.status(400).send(error));
 };
-
-exports.addNewPassword = function (req, res) {
-  let id = req.params.id;
-  console.log(id);
-  user.findById(req.params.id)
-    .then(user => {
-      if (!user) {
-        return res.status(400).send({
-          message: 'User Not Found',
-        });
-      }
-      user.update(req.body, {
-        where:
-          { id: id }
-      }).then(() => res.status(200).send())
-        .catch(error => res.status(400).send(error));
-    })
-    .catch(error => res.status(400).send(error));
-}

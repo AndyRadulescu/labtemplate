@@ -2,12 +2,10 @@
 module.exports = (sequelize, DataTypes) => {
   var ticket = sequelize.define('ticket', {
     price: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+  ticket.associate = (models) => {
+    console.log("-> ticket belongs to grandprix");
+    ticket.belongsTo(models.grandprix, { foreignKey: 'grandprix_id', onDelete: 'CASCADE' });
+  }
   return ticket;
 };

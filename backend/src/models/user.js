@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   user.associate = (models) => {
-    console.log(models);
-    user.hasMany(models.comment, { foreignKey: 'userId' })
+    console.log("-> user has many comments");
+    user.hasMany(models.comment, { foreignKey: 'user_id' })
   }
 
   return user;

@@ -17,6 +17,9 @@ module.exports = {
       pilot: {
         type: Sequelize.STRING
       },
+      // grandprix_id: {
+      //   type: Sequelize.INTEGER
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
