@@ -5,8 +5,10 @@
 </div>
 <sui-sidebar-container class="ui bottom attached segment">
   <sui-sidebar class="inverted vertical" #sidebar>
-    <a class="item">1</a>
-    <a class="item">2</a>
+    <a class="item"routerLink="/home">Home</a>
+    <a class="item"routerLink="/user">User </a>
+    <a class="item"routerLink="/grandprix">Grand Prix</a>
+    <a class="item"routerLink="/ticket">Ticket</a>
   </sui-sidebar>
   <sui-sidebar-sibling [isDimmedWhenVisible]="true">
     <router-outlet></router-outlet>

@@ -1,18 +1,18 @@
 {
   "development": {
     "username": "postgres",
-    "password": "1q2w3e",
+    "password": "",
     "database": "devdb",
     "host": "127.0.0.1",
-    "port": 5432,
+    "port": 32768,
     "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
-    "password": "1q2w3e",
+    "password": "",
     "database": "devdb",
     "host": "127.0.0.1",
-    "port": 5432,
+    "port": 32768,
     "dialect": "postgres"
   }
 }
