@@ -15,17 +15,20 @@ import { AppRoutingModule } from './app-routing.module';
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent, NavbarComponent } from './components';
+import {DataTableModule,SharedModule} from 'primeng/primeng';
 
 // used to create fake backend
 import { fakeBackendProvider } from './service';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
+import { UserComponent } from './components/pages/user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    UserComponent
   ],
   imports: [
     AppRoutingModule,
@@ -36,6 +39,8 @@ import { BaseRequestOptions } from '@angular/http';
     HttpModule,
     ReactiveFormsModule,
     SuiModule,
+    DataTableModule,
+    SharedModule
   ],
   providers: [
     AppRoutingModule,
