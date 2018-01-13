@@ -22,13 +22,15 @@ import { fakeBackendProvider } from './service';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 import { UserComponent } from './components/pages/user/user.component';
+import { GrandprixComponent } from './components/pages/grandprix/grandprix.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    UserComponent
+    UserComponent,
+    GrandprixComponent
   ],
   imports: [
     AppRoutingModule,
