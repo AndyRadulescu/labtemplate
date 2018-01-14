@@ -19,6 +19,7 @@ import { DataTableModule, SharedModule } from 'primeng/primeng';
 import { DataListModule } from 'primeng/primeng';
 import { DialogModule } from 'primeng/primeng'
 
+
 // used to create fake backend
 import { fakeBackendProvider } from './service';
 import { MockBackend, MockConnection } from '@angular/http/testing';
@@ -48,7 +49,7 @@ import { TicketComponent } from './components/pages/ticket/ticket.component';
     DataTableModule,
     SharedModule,
     DataListModule,
-    DialogModule
+    DialogModule,
   ],
   providers: [
     AppRoutingModule,

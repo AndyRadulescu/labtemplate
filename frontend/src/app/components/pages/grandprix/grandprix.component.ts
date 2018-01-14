@@ -14,6 +14,8 @@ export class GrandprixComponent implements OnInit {
   grandprix: Grandprix = new Grandprix();
 
   selectedGrandprix;
+  teams;
+  ;
 
   newGrandprix: boolean;
 
@@ -23,7 +25,7 @@ export class GrandprixComponent implements OnInit {
   ngOnInit() {
     this.apiService.get('api/grandprix').subscribe(res => {
       this.grandprixes = res;
-      console.log(this.grandprixes);
+     // console.log(this.grandprixes);
     });
   }
 
@@ -31,11 +33,13 @@ export class GrandprixComponent implements OnInit {
     this.apiService.get('api/grandprix/' + event.data.id).subscribe(res => {
       this.selectedGrandprix = res;
       this.grandprix = res;
-     // let teams = this.selectedGrandprix.teams;
-      console.log(this.selectedGrandprix.teams);
+      console.log(res);
+      this.teams = res.teams;
+      console.log(this.teams);
+      // let teams = this.selectedGrandprix.teams;
+      //console.log(this.selectedGrandprix.teams);
       this.displayDialog = true;
     });
     //console.log(event.data.id);
   }
-
 }
