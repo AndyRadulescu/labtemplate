@@ -2,6 +2,7 @@
 
 const team = require('../models').team;
 const grandprixteam = require('../models').grandprixteam;
+const grandprix = require('../models').grandprix;
 
 exports.list = function (req, res) {
   team.findAll({
