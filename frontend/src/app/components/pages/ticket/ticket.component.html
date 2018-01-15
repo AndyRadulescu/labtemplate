@@ -1,4 +1,42 @@
-<p>
-     Ticket works!
-</p>
-      
+<style>
+img {
+      max-width: 100%;
+      height: auto;
+  }
+  .top-left {
+    position: absolute;
+    top: 16px;
+    left: 64px;
+  }
+  h1 {
+    font-size: 5vw;
+    font-family: 'Lucida Console';
+  }
+  </style>
+
+
+<div class="header">
+  <img src="assets/Images/panel_image/f1car.jpg" width="430" height="138">
+  <div class="top-right"><h1>By a Ticket</h1></div>
+
+</div>
+<br>
+<div style="overflow-x:auto;">
+ <table style="width: 100%" >
+    <tr>
+      <td style="font-size:180%">Grandprix RUSSIA</td>
+      <td style="font-size:180%">Grandprix CHINA</td>
+      <td style="font-size:180%">Grandprix ROMANIA</td>
+    </tr><br>
+    <tr>
+      <td><img src="assets/Images/panel_image/gpRussia.jpg" style="width:228px;height:128px;"></td>
+      <td><img src="assets/Images/panel_image/gpChina.jpg" style="width:228px;height:128px;"></td>
+      <td><img src="assets/Images/panel_image/gpRomania.jpg" style="width:228px;height:128px;"></td>
+    </tr><br>
+    <tr>
+      <td><button pButton type="By ticket" (click)="ngOnInit()" label="By ticket">By tickets</button></td>
+      <td><button pButton type="button" routerLink="/gpRussia" label="See details"></button></td>
+      <td><button pButton type="button" routerLink="/gpRomania" label="See details"></button></td>
+    </tr>
+  </table>
+</div>

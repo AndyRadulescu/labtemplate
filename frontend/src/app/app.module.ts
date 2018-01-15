@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent, NavbarComponent } from './components';
-import {DataTableModule,SharedModule} from 'primeng/primeng';
+import {DataTableModule,SharedModule,DataListModule} from 'primeng/primeng';
 
 // used to create fake backend
 import { fakeBackendProvider } from './service';
@@ -44,7 +44,8 @@ import { TicketComponent } from './components/pages/ticket/ticket.component';
     ReactiveFormsModule,
     SuiModule,
     DataTableModule,
-    SharedModule
+    SharedModule,
+    DataListModule
   ],
   providers: [
     AppRoutingModule,

@@ -1,30 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import {Ticket} from '../../../models/ticket';
-import { MessageService } from 'primeng/components/common/messageservice';
-import {ApiService} from '../../../service/api.service'
+import {OnInit,Component} from '@angular/core';
+import { Ticket } from '../../../models/ticket';
+import { ApiService } from '../../../service/api.service';
+
 
 @Component({
-  selector: 'app-ticket',
-  templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.less']
-})
+    selector: 'app-ticket',
+    templateUrl: './ticket.component.html',
+    styleUrls: ['./ticket.component.less']
+  })
 export class TicketComponent implements OnInit {
-
-  displayDialog: boolean;
-
-  ticket: Ticket = new Ticket();
   
-  selectedUser: TicketComponent;
+    displayDialog: boolean;
+
+    ticket: Ticket = new Ticket();
+    
+    selectedTicket: Ticket;
+    
+    newTicket: boolean;
   
-  newUser: boolean;
-
-  tickets: TicketComponent[];
-
-  constructor(private apiService: ApiService ) { 
-   
-  }
+    tickets: Ticket[];
+  
+    constructor(private apiService: ApiService ,){
+         console.log('constructor ran..')}
 
   ngOnInit() {
-     console.log(this.ticket[0].id);
+      console.log('ngOnInit ran...')
+    this.apiService.get('api/user').subscribe(res =>{    
+        this.ticket = res;
+        console.log(this.ticket[0].price);
+    });
   }
 }
+
+
