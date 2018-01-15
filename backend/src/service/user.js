@@ -15,9 +15,7 @@ exports.list = function (req, res, next) {
 
 exports.create = function (req, res) {
   console.log(req);
-  res.jsonp(user.create(req.body, {
-    include: [{ model: comment }]
-  }));
+  res.jsonp(user.create(req.body));
 };
 
 exports.findById = function (req, res) {
