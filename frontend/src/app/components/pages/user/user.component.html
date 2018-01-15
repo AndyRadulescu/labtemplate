@@ -1,11 +1,33 @@
-<p-dataTable [value]="users" selectionMode="single" [paginator]="true" rows="15" [responsive]="true" >
-  <p-header>PLMDDSAJIDOJASOID</p-header>
+<p-dataTable [value]="users" selectionMode="single" [(selection)]="selectedUser" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true" >
+  <p-header>UsersDetails</p-header>
   <p-column field="id" header="Id" [sortable]="true"></p-column>
     <p-column field="name" header="Name" [sortable]="true"></p-column>
     <p-column field="userName" header="username" [sortable]="true"></p-column>
     <p-column field="password" header="Password" [sortable]="true"></p-column>
     <p-column field="createdAt" header="Created At" [sortable]="true"></p-column>
     <p-column field="updatedAt" header="Updated At" [sortable]="true"></p-column>
-  <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" label="Add"></button></div></p-footer>
+    <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div></p-footer>
 </p-dataTable>
 
+<p-dialog header="User Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" appendTo="body" [modal]="true">
+  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="user">
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-4"><label for="id">Id</label></div>
+          <div class="ui-grid-col-8"><input pInputText id="id" [(ngModel)]="user.id" /></div>
+      </div>
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-4"><label for="name">Name</label></div>
+          <div class="ui-grid-col-8"><input pInputText id="name" [(ngModel)]="user.name" /></div>
+      </div>
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-4"><label for="userName">Username</label></div>
+          <div class="ui-grid-col-8"><input pInputText id="userName" [(ngModel)]="user.userName" /></div>
+      </div>
+  </div>
+  <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+          <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+      </div>
+  </p-footer>
+</p-dialog>

@@ -30,4 +30,48 @@ export class UserComponent implements OnInit {
      console.log(this.users[0].id);
     });
   }
+
+  showDialogToAdd() {
+    this.newUser = true;
+    this.user = new User();
+    this.displayDialog = true;
 }
+
+save() {
+    let users = [...this.users];
+    if(this.newUser)
+        users.push(this.user);
+    else
+        users[this.findSelectedUserIndex()] = this.user;
+    
+    this.users = users;
+    this.user = null;
+    this.displayDialog = false;
+}
+
+delete() {
+    let index = this.findSelectedUserIndex();
+    this.users = this.users.filter((val,i) => i!=index);
+    this.user = null;
+    this.displayDialog = false;
+}    
+
+onRowSelect(event) {
+    this.newUser = false;
+    this.user = this.cloneUser(event.data);
+    this.displayDialog = true;
+}
+
+cloneUser(u: User): User {
+    let user = new User();
+    for(let prop in user) {
+      user[prop] = user[prop];
+    }
+    return user;
+}
+
+findSelectedUserIndex(): number {
+    return this.users.indexOf(this.selectedUser);
+}
+}
+
