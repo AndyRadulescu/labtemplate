@@ -25,47 +25,59 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.apiService.get('api/user').subscribe(res =>{    
-     this.users = res;
-     console.log(this.users[0].id);
-    });
+    this.refresh();
+  }
+
+  refresh(){
+    this.apiService.get('api/user').subscribe(res =>{    
+        this.users = res;
+        console.log("was called");
+       });
   }
 
   showDialogToAdd() {
     this.newUser = true;
-    this.user = new User();
+    this.user = new User();  
     this.displayDialog = true;
 }
 
 save() {
-    let users = [...this.users];
-    if(this.newUser)
-        users.push(this.user);
-    else
-        users[this.findSelectedUserIndex()] = this.user;
-    
-    this.users = users;
-    this.user = null;
+    // this.user.updatedAt =  new Date().toLocaleDateString();
+    // this.user.createdAt =  new Date().toLocaleDateString();
+    this.apiService.post('api/user', this.user).subscribe(res =>{    
+        console.log(res);
+       });
+       this.user = new User(); 
     this.displayDialog = false;
+    this.ngOnInit();
+}
+
+edit(){
+    this.apiService.put('api/user/' + this.selectedUser.id, this.user).subscribe(res =>{    
+        console.log(res);
+    }); 
+    this.user = new User(); 
+    this.displayDialog = false;
+    this.ngOnInit();
 }
 
 delete() {
-    let index = this.findSelectedUserIndex();
-    this.users = this.users.filter((val,i) => i!=index);
-    this.user = null;
+    this.apiService.delete('api/user/' + this.selectedUser.id).subscribe();
+    this.user = new User(); 
     this.displayDialog = false;
+    this.ngOnInit();
 }    
 
 onRowSelect(event) {
     this.newUser = false;
-    this.user = this.cloneUser(event.data);
+    this.user = this.cloneUser(this.selectedUser);
     this.displayDialog = true;
 }
 
 cloneUser(u: User): User {
     let user = new User();
-    for(let prop in user) {
-      user[prop] = user[prop];
+    for(let prop in u) {
+      user[prop] = u[prop];
     }
     return user;
 }
