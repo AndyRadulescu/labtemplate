@@ -1,30 +1,41 @@
-\<p-dataTable [value]="grandprixes" selectionMode="single" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true" >
-  <p-header>PLMDDSAJIDOJASOID</p-header>
+<p-dataTable [value]="grandprixes" selectionMode="single" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15"
+    [responsive]="true">
+    <p-header>Grandprixes</p-header>
     <p-column field="name" header="Name" [sortable]="true"></p-column>
     <p-column field="date" header="date" [sortable]="true"></p-column>
-    <p-column field="difficulty" header="Password" [sortable]="true"></p-column>
+    <p-column field="difficulty" header="Difficulty" [sortable]="true"></p-column>
     <p-column field="location" header="Location" [sortable]="true"></p-column>
     <p-column field="number_km" header="km" [sortable]="true"></p-column>
-  <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" label="Add"></button></div></p-footer>
+    <p-footer>
+        <div class="ui-helper-clearfix" style="width:100%">
+            <button type="button" pButton icon="fa-plus" style="float:left" label="Add"></button>
+        </div>
+    </p-footer>
 </p-dataTable>
 
-<p-dialog header="Grandprix Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
-  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="grandprix">
-      <div class="ui-grid-row">
-          <div class="ui-grid-col-4"><label for="name">Name</label></div>
-          <div class="ui-grid-col-8"><input pInputText id="name" [(ngModel)]="grandprix.name" /></div>
-      </div>
-      <div class="ui-grid-row">
-          <div class="ui-grid-col-4"><label for="date">Date</label></div>
-          <div class="ui-grid-col-8"><input pInputText id="date" [(ngModel)]="grandprix.date" /></div>
-      </div>
-      <div class="ui-grid-row">
-          <div class="ui-grid-col-4"><label for="difficulty">Difficulty</label></div>
-          <div class="ui-grid-col-8"><input pInputText id="difficulty" [(ngModel)]="grandprix.difficulty" /></div>
-      </div>
-      <div class="ui-grid-row">
-          <div class="ui-grid-col-4"><label for="location">Location</label></div>
-          <div class="ui-grid-col-8"><input pInputText id="location" [(ngModel)]="grandprix.location" /></div>
-      </div>
-  </div>
+<p-dialog appendTo="body" header="Grandprix Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <p-dataList [value]="teams" [paginator]="true" [rows]="5">
+        <p-header>
+            List of Teams
+        </p-header>
+        <ng-template let-team pTemplate="item">
+            <div class="ui-g ui-fluid team-item">
+                <div class="ui-g-12 ui-md-3" style="text-align:center">
+                    <img src="assets/showcase/images/teamimgs/{{team.team_name}}.png">
+                </div>
+                <div class="ui-g-12 ui-md-9 team-details">
+                    <div class="ui-g">
+                        <div class="ui-g-6 ui-sm-10">Name: </div>
+                        <div class="ui-g-15 ui-sm-10"> {{team.team_name}}</div>
+
+                        <div class="ui-g-6 ui-sm-10">Team Points: </div>
+                        <div class="ui-g-15 ui-sm-10"> {{team.team_points}}</div>
+
+                        <div class="ui-g-6 ui-sm-10">Pilot: </div>
+                        <div class="ui-g-15 ui-sm-10"> {{team.pilot}}</div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataList>
 </p-dialog>
