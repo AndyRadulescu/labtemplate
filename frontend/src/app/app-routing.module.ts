@@ -11,10 +11,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'user', component: UserComponent },
   { path: 'grandprix', component: GrandprixComponent },
-  { path: 'ticket', component: TicketComponent}
+  { path: 'ticket', component: TicketComponent},
 
   // otherwise redirect to home
-  // { path: '**', redirectTo: '/' }
+   { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({

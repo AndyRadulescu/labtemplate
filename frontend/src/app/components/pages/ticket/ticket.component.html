@@ -1,42 +1,85 @@
 <style>
-img {
-      max-width: 100%;
-      height: auto;
+  img {
+    max-width: 100%;
+    height: auto;
   }
+
   .top-left {
     position: absolute;
     top: 16px;
     left: 64px;
   }
+
   h1 {
     font-size: 5vw;
     font-family: 'Lucida Console';
   }
-  </style>
-
+</style>
 
 <div class="header">
   <img src="assets/Images/panel_image/f1car.jpg" width="430" height="138">
-  <div class="top-right"><h1>By a Ticket</h1></div>
+  <div class="top-right">
+    <h1>Buy a Ticket</h1>
+  </div>
 
 </div>
 <br>
 <div style="overflow-x:auto;">
- <table style="width: 100%" >
+  <table style="width: 100%">
     <tr>
       <td style="font-size:180%">Grandprix RUSSIA</td>
       <td style="font-size:180%">Grandprix CHINA</td>
       <td style="font-size:180%">Grandprix ROMANIA</td>
-    </tr><br>
+    </tr>
+    <br>
     <tr>
-      <td><img src="assets/Images/panel_image/gpRussia.jpg" style="width:228px;height:128px;"></td>
-      <td><img src="assets/Images/panel_image/gpChina.jpg" style="width:228px;height:128px;"></td>
-      <td><img src="assets/Images/panel_image/gpRomania.jpg" style="width:228px;height:128px;"></td>
-    </tr><br>
+      <td>
+        <img src="assets/Images/panel_image/gpRussia.jpg" style="width:228px;height:128px;">
+      </td>
+      <td>
+        <img src="assets/Images/panel_image/gpChina.jpg" style="width:228px;height:128px;">
+      </td>
+      <td>
+        <img src="assets/Images/panel_image/gpRomania.jpg" style="width:228px;height:128px;">
+      </td>
+    </tr>
+    <br>
     <tr>
-      <td><button pButton type="By ticket" (click)="ngOnInit()" label="By ticket">By tickets</button></td>
-      <td><button pButton type="button" routerLink="/gpRussia" label="See details"></button></td>
-      <td><button pButton type="button" routerLink="/gpRomania" label="See details"></button></td>
+      <td>
+        <button pButton type="By ticket" (click)="buyTicketRussia()" label="By ticket">Buy tickets</button>
+      </td>
+      <td>
+        <button pButton type="By ticket" (click)="buyTicketChina()" label="By ticket">Buy tickets</button>
+      </td>
+      <td>
+        <button pButton type="By ticket" (click)="buyTicketRomania()" label="By ticket">Buy tickets</button>
+      </td>
     </tr>
   </table>
 </div>
+
+<!-- <p-dialog appendTo="body" header="Ticket Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <p-listbox [options]="tickets" [(ngModel)]="selectedTicket" [style]="{'width':'190px'}" [listStyle]="{'max-height':'250px'}">
+    <ng-template let-ticket pTemplate="item">
+      <div class="ui-helper-clearfix">
+        <img src="assets/Images/ticket/{{ticket.price}}.png" style="display:inline-block;margin:5px 0 0 5px" width="48">
+        <span style="">{{ticket.price}}</span>
+      </div>
+    </ng-template>
+  </p-listbox>
+</p-dialog> -->
+
+<!-- AM scos cacatul asta ca nu merge, am pus data table in loc -->
+
+<p-dialog appendTo="body" header="Ticket Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <h3>Content</h3>
+  <p-dataTable [value]="tickets" selectionMode="single" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
+    <p-header>Grandprixes</p-header>
+    <p-column field="price" header="Price" [sortable]="true"></p-column>
+    <p-footer>
+      <div class="ui-helper-clearfix" style="width:50%">
+        <button type="button" pButton icon="fa-plus" style="float:left" label="Add"></button>
+      </div>
+    </p-footer>
+  </p-dataTable>
+</p-dialog>
