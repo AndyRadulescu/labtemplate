@@ -25,6 +25,6 @@ export class TicketComponent implements OnInit {
   }
 
   ngOnInit() {
-     console.log(this.ticket[0].id);
+    //  console.log(this.ticket[0].id);
   }
 }
