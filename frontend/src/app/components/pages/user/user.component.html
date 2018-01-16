@@ -10,22 +10,18 @@
 </p-dataTable>
 
 <p-dialog header="User Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" appendTo="body" [modal]="true">
-  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="user">
-        <div class="ui-grid-row">
-                <div class="ui-grid-col-4"><label for="id">Id</label></div>
-                <div class="ui-grid-col-8"><input pInputText id="id" [(ngModel)]="user.id" /></div>
-            </div>
+  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="userDto">
       <div class="ui-grid-row">
           <div class="ui-grid-col-4"><label for="name">Name</label></div>
-          <div class="ui-grid-col-8"><input pInputText id="name" [(ngModel)]="user.name" /></div>
+          <div class="ui-grid-col-8"><input pInputText id="name" [(ngModel)]="userDto.name" /></div>
       </div>
       <div class="ui-grid-row">
           <div class="ui-grid-col-4"><label for="userName">Username</label></div>
-          <div class="ui-grid-col-8"><input pInputText id="userName" [(ngModel)]="user.userName" /></div>
+          <div class="ui-grid-col-8"><input pInputText id="userName" [(ngModel)]="userDto.userName" /></div>
       </div>
       <div class="ui-grid-row">
         <div class="ui-grid-col-4"><label for="password">Password</label></div>
-        <div class="ui-grid-col-8"><input pInputText id="password" [(ngModel)]="user.password" /></div>
+        <div class="ui-grid-col-8"><input pInputText id="password" [(ngModel)]="userDto.password" /></div>
     </div>
   </div>
   <p-footer>

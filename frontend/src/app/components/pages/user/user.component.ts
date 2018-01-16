@@ -20,6 +20,8 @@ export class UserComponent implements OnInit {
 
   users: User[];
 
+  userDto: UserDto = new UserDto();
+
   constructor(private apiService: ApiService ) { 
    
   }
@@ -37,53 +39,63 @@ export class UserComponent implements OnInit {
 
   showDialogToAdd() {
     this.newUser = true;
-    this.user = new User();  
+    this.userDto = new UserDto();
     this.displayDialog = true;
 }
 
 save() {
     // this.user.updatedAt =  new Date().toLocaleDateString();
     // this.user.createdAt =  new Date().toLocaleDateString();
-    this.apiService.post('api/user', this.user).subscribe(res =>{    
+    this.apiService.post('api/user', this.userDto).subscribe(res =>{    
         console.log(res);
        });
-       this.user = new User(); 
     this.displayDialog = false;
-    this.ngOnInit();
+    this.refresh();
 }
 
 edit(){
-    this.apiService.put('api/user/' + this.selectedUser.id, this.user).subscribe(res =>{    
+    this.apiService.put('api/user/' + this.selectedUser.id, this.userDto).subscribe(res =>{    
         console.log(res);
     }); 
-    this.user = new User(); 
     this.displayDialog = false;
-    this.ngOnInit();
+    this.refresh();
 }
 
 delete() {
     this.apiService.delete('api/user/' + this.selectedUser.id).subscribe();
-    this.user = new User(); 
     this.displayDialog = false;
-    this.ngOnInit();
+    this.refresh();
 }    
 
 onRowSelect(event) {
     this.newUser = false;
-    this.user = this.cloneUser(this.selectedUser);
+    this.userDto = this.cloneUserToUserDto(this.selectedUser);
+    console.log(this.userDto);
     this.displayDialog = true;
 }
 
-cloneUser(u: User): User {
-    let user = new User();
-    for(let prop in u) {
-      user[prop] = u[prop];
+cloneUserToUserDto(u: User): UserDto {
+    let userDto = new UserDto();
+    for(let prop in userDto) {
+      userDto[prop] = u[prop];
     }
-    return user;
+    return userDto;
 }
 
 findSelectedUserIndex(): number {
     return this.users.indexOf(this.selectedUser);
 }
+}
+
+export class UserDto {
+    name: String;
+    userName: String;
+    password: String;
+
+    constructor(name?: String, userName?: String, password?: String) {
+        this.name = name;
+        this.userName = userName;
+        this.password = password;
+    }
 }
 
