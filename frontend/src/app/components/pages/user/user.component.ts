@@ -1,77 +1,98 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../../models/user';
+import { User } from '../../../models/user';
 import { MessageService } from 'primeng/components/common/messageservice';
-import {ApiService} from '../../../service/api.service'
+import { ApiService } from '../../../service/api.service'
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.less']
+    selector: 'app-user',
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.less']
 })
 export class UserComponent implements OnInit {
 
-  displayDialog: boolean;
+    displayDialog: boolean;
 
-  user: User = new User();
-  
-  selectedUser: User;
-  
-  newUser: boolean;
+    user: User = new User();
 
-  users: User[];
+    selectedUser: User;
 
-  constructor(private apiService: ApiService ) { 
-   
-  }
+    newUser: boolean;
 
-  ngOnInit() {
-     this.apiService.get('api/user').subscribe(res =>{    
-     this.users = res;
-     console.log(this.users[0].id);
-    });
-  }
+    users: User[];
 
-  showDialogToAdd() {
-    this.newUser = true;
-    this.user = new User();
-    this.displayDialog = true;
-}
+    userDto: UserDto = new UserDto();
 
-save() {
-    let users = [...this.users];
-    if(this.newUser)
-        users.push(this.user);
-    else
-        users[this.findSelectedUserIndex()] = this.user;
-    
-    this.users = users;
-    this.user = null;
-    this.displayDialog = false;
-}
+    constructor(private apiService: ApiService) {
 
-delete() {
-    let index = this.findSelectedUserIndex();
-    this.users = this.users.filter((val,i) => i!=index);
-    this.user = null;
-    this.displayDialog = false;
-}    
-
-onRowSelect(event) {
-    this.newUser = false;
-    this.user = this.cloneUser(event.data);
-    this.displayDialog = true;
-}
-
-cloneUser(u: User): User {
-    let user = new User();
-    for(let prop in user) {
-      user[prop] = user[prop];
     }
-    return user;
+
+    ngOnInit() {
+        this.refresh();
+    }
+
+    refresh() {
+        this.apiService.get('api/user').subscribe(res => {
+            this.users = res;
+            console.log("was called");
+        });
+    }
+
+    showDialogToAdd() {
+        this.newUser = true;
+        this.userDto = new UserDto();
+        this.displayDialog = true;
+    }
+
+    save() {
+        this.apiService.post('api/user', this.userDto).subscribe(res => {
+            this.refresh();
+        });
+        this.displayDialog = false;
+    }
+
+    edit() {
+        this.apiService.put('api/user/' + this.selectedUser.id, this.userDto).subscribe(res => {
+            this.refresh();
+        });
+        this.displayDialog = false;
+    }
+
+    delete() {
+        this.apiService.delete('api/user/' + this.selectedUser.id).subscribe(res => {
+            this.refresh();
+        });
+        this.displayDialog = false;
+    }
+
+    onRowSelect(event) {
+        this.newUser = false;
+        this.userDto = this.cloneUserToUserDto(this.selectedUser);
+        console.log(this.userDto);
+        this.displayDialog = true;
+    }
+
+    cloneUserToUserDto(u: User): UserDto {
+        let userDto = new UserDto();
+        for (let prop in userDto) {
+            userDto[prop] = u[prop];
+        }
+        return userDto;
+    }
+
+    findSelectedUserIndex(): number {
+        return this.users.indexOf(this.selectedUser);
+    }
 }
 
-findSelectedUserIndex(): number {
-    return this.users.indexOf(this.selectedUser);
-}
+export class UserDto {
+    name: String;
+    userName: String;
+    password: String;
+
+    constructor(name?: String, userName?: String, password?: String) {
+        this.name = name;
+        this.userName = userName;
+        this.password = password;
+    }
 }
 

@@ -15,9 +15,10 @@ import { AppRoutingModule } from './app-routing.module';
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent, NavbarComponent } from './components';
-import { DataTableModule, SharedModule, DataListModule, DialogModule } from 'primeng/primeng';
-import { ListboxModule } from 'primeng/primeng';
-
+import { DataTableModule, SharedModule } from 'primeng/primeng';
+import { DataListModule } from 'primeng/primeng';
+import { DialogModule } from 'primeng/primeng';
+import {ButtonModule} from 'primeng/primeng';
 
 // used to create fake backend
 import { fakeBackendProvider } from './service';
@@ -49,7 +50,7 @@ import { TicketComponent } from './components/pages/ticket/ticket.component';
     SharedModule,
     DataListModule,
     DialogModule,
-    ListboxModule
+    ButtonModule
   ],
   providers: [
     AppRoutingModule,

@@ -57,7 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
-
 backend/package.json
 backend/package-lock.json
 backend/src/config/config.json

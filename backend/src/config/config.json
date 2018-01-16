@@ -5,6 +5,7 @@
     "database": "devdb",
     "host": "127.0.0.1",
     "port": 32768,
+
     "dialect": "postgres"
   },
   "production": {

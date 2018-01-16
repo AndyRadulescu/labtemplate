@@ -15,7 +15,6 @@ export class GrandprixComponent implements OnInit {
 
   selectedGrandprix;
   teams;
-  ;
 
   newGrandprix: boolean;
 

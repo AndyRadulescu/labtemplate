@@ -14,6 +14,9 @@ module.exports = {
       grandprix_id: {
         type: Sequelize.INTEGER
       },
+      user_id:{
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

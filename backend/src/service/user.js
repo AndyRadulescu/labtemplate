@@ -14,9 +14,8 @@ exports.list = function (req, res, next) {
 };
 
 exports.create = function (req, res) {
-  res.jsonp(user.create(req.body, {
-    include: [{ model: comment }]
-  }));
+  console.log(req);
+  res.jsonp(user.create(req.body));
 };
 
 exports.findById = function (req, res) {
@@ -26,6 +25,7 @@ exports.findById = function (req, res) {
   }).then(user => {
     res.jsonp(user);
   });
+  res.jsonp({data:"saved"});
 };
 
 exports.updateUser = function (req, res) {
@@ -45,13 +45,14 @@ exports.updateUser = function (req, res) {
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
+    res.jsonp({data:"updated0"});
 }
 
 exports.delete = function (req, res) {
   let id = req.params.id;
   comment.destroy({
     where: {
-      userId: id
+      id: id
     }
   });
   user.findById(req.params.id)
