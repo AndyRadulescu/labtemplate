@@ -5,4 +5,5 @@ export class Grandprix {
     location: String;
     name: String;
     number_km: number;
+
 }

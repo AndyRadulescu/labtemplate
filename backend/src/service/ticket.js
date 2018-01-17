@@ -37,6 +37,7 @@ exports.updateTicket = function (req, res) {
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
+    res.jsonp({data:"updated0"});
 }
 
 exports.delete = function (req, res) {

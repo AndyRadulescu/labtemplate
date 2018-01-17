@@ -14,15 +14,14 @@ exports.list = function (req, res, next) {
 };
 
 exports.create = function (req, res) {
-  res.jsonp(user.create(req.body, {
-    include: [{ model: comment }]
-  }));
+  console.log(req);
+  res.jsonp(user.create(req.body));
 };
 
 exports.findById = function (req, res) {
   let id = req.params.id;
   user.findById(id, {
-    include: [{ model: comment }]
+    include: [{ all: true  }]
   }).then(user => {
     res.jsonp(user);
   });
@@ -45,13 +44,14 @@ exports.updateUser = function (req, res) {
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
+    res.jsonp({data:"updated"});
 }
 
 exports.delete = function (req, res) {
   let id = req.params.id;
   comment.destroy({
     where: {
-      userId: id
+      id: id
     }
   });
   user.findById(req.params.id)
