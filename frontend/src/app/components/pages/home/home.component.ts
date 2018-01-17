@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../service/';
-import {User} from '../../../models/user';
+import { User } from '../../../models/user';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.apiService.get('api/user/2').subscribe(res => {
       this.user = res.name;
-     
+
       //this.user = res.data;
       console.log(res.name);
     });
