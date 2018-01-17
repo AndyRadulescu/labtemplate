@@ -25,8 +25,6 @@ export class CommentComponent implements OnInit {
 
     ngOnInit() {
     }
-
-
     find() {
         this.apiService.get('api/user/' + this.userId).subscribe(res => {
             this.comments = res.comments;

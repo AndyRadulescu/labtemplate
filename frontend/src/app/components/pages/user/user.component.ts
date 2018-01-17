@@ -31,10 +31,9 @@ export class UserComponent implements OnInit {
     }
 
     refresh() {
-        this.apiService.get('api/user').subscribe(res => {
+        console.log(this.apiService.get('api/user').subscribe(res => {
             this.users = res;
-            console.log("was called");
-        });
+        }));
     }
 
     showDialogToAdd() {
@@ -46,22 +45,23 @@ export class UserComponent implements OnInit {
     save() {
         this.apiService.post('api/user', this.userDto).subscribe(res => {
             this.refresh();
+            this.displayDialog = false;
         });
-        this.displayDialog = false;
     }
 
     edit() {
         this.apiService.put('api/user/' + this.selectedUser.id, this.userDto).subscribe(res => {
             this.refresh();
+            console.log("edit")
+            this.displayDialog = false;
         });
-        this.displayDialog = false;
     }
 
     delete() {
         this.apiService.delete('api/user/' + this.selectedUser.id).subscribe(res => {
             this.refresh();
+            this.displayDialog = false;
         });
-        this.displayDialog = false;
     }
 
     onRowSelect(event) {
