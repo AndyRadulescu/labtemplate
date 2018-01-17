@@ -58,7 +58,7 @@ export class TicketComponent implements OnInit {
     this.displayDialog2 = true;
     console.log(event.data.id);
   }
-
+   
   submit() {
     console.log("here is " + this.userId);
     let i =  parseInt(this.userId);
@@ -66,10 +66,8 @@ export class TicketComponent implements OnInit {
     console.log(this.selectedTicket);
     
     this.apiService.put('api/ticket/' + this.selectedTicket.id, this.selectedTicket).subscribe(res => {
-
-      
       console.log(res);
-
+     this.displayDialog2 = false;
     });
 
   }
