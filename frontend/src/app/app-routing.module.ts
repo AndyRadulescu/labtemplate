@@ -4,6 +4,7 @@ import { HomeComponent, NavbarComponent } from './components';
 import { UserComponent } from './components/pages/user/user.component';
 import { GrandprixComponent } from './components/pages/grandprix/grandprix.component';
 import { TicketComponent } from './components/pages/ticket/ticket.component';
+import { CommentComponent} from './components/pages/comment/comment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'grandprix', component: GrandprixComponent },
   { path: 'ticket', component: TicketComponent},
+  { path: 'comment', component: CommentComponent},
 
   // otherwise redirect to home
    { path: '**', redirectTo: '/' }

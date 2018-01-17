@@ -1,0 +1,23 @@
+<p-dataTable [value]="comments" selectionMode="single" [(selection)]="selectedUser" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true" >
+    <p-header>UsersDetails</p-header>
+    <p-column field="id" header="Id" [sortable]="true"></p-column>
+      <p-column field="price" header="Price" [sortable]="true"></p-column>
+      <p-column field="grandprix_id" header="GrandprixId" [sortable]="true"></p-column>
+      <p-column field="createdAt" header="Created At" [sortable]="true"></p-column>
+      <p-column field="updatedAt" header="Updated At" [sortable]="true"></p-column>
+      <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="find()" label="Find"></button></div></p-footer>
+  </p-dataTable>
+  
+  <p-dialog header="User Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" appendTo="body" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="id">UserID</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="id" [(ngModel)]="userId" /></div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa-check" (click)="find()" label="Find"></button>
+        </div>
+    </p-footer>
+  </p-dialog>

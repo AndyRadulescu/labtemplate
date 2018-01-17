@@ -28,6 +28,7 @@ import { BaseRequestOptions } from '@angular/http';
 import { UserComponent } from './components/pages/user/user.component';
 import { GrandprixComponent } from './components/pages/grandprix/grandprix.component';
 import { TicketComponent } from './components/pages/ticket/ticket.component';
+import { CommentComponent} from './components/pages/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TicketComponent } from './components/pages/ticket/ticket.component';
     NavbarComponent,
     UserComponent,
     GrandprixComponent,
-    TicketComponent
+    TicketComponent,
+    CommentComponent
   ],
   imports: [
     AppRoutingModule,
