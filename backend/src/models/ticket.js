@@ -1,7 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var ticket = sequelize.define('ticket', {
-    price: DataTypes.INTEGER
+    price: DataTypes.INTEGER,
+    type: DataTypes.STRING
   });
   ticket.associate = (models) => {
     console.log("-> ticket belongs to grandprix");

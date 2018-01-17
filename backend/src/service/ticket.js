@@ -4,7 +4,7 @@ const ticket = require('../models').ticket;
 
 exports.list = function (req, res) {
   ticket.findAll({
-    include: [{ all:true }]
+    include: [{ all: true }]
   }).then(ticket => {
     res.jsonp(ticket);
   });
@@ -16,7 +16,7 @@ exports.create = function (req, res) {
 
 exports.findById = function (req, res) {
   let id = req.params.id;
-  ticket.findById(id).then(ticket => {
+  ticket.findById(id, { include: [{ all: true }] }).then(ticket => {
     res.jsonp(ticket);
   });
 };
@@ -37,7 +37,7 @@ exports.updateTicket = function (req, res) {
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
-    res.jsonp({data:"updated0"});
+  res.jsonp({ data: "updated0" });
 }
 
 exports.delete = function (req, res) {
