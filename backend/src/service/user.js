@@ -21,11 +21,10 @@ exports.create = function (req, res) {
 exports.findById = function (req, res) {
   let id = req.params.id;
   user.findById(id, {
-    include: [{ model: comment }]
+    include: [{ all: true  }]
   }).then(user => {
     res.jsonp(user);
   });
-  res.jsonp({data:"saved"});
 };
 
 exports.updateUser = function (req, res) {
@@ -45,7 +44,7 @@ exports.updateUser = function (req, res) {
         .catch(error => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
-    res.jsonp({data:"updated0"});
+    res.jsonp({data:"updated"});
 }
 
 exports.delete = function (req, res) {
