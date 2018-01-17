@@ -24,7 +24,7 @@ export class GrandprixComponent implements OnInit {
   ngOnInit() {
     this.apiService.get('api/grandprix').subscribe(res => {
       this.grandprixes = res;
-     // console.log(this.grandprixes);
+      // console.log(this.grandprixes);
     });
   }
 
@@ -40,5 +40,9 @@ export class GrandprixComponent implements OnInit {
       this.displayDialog = true;
     });
     //console.log(event.data.id);
+  }
+
+  goToTickets(event) {
+
   }
 }
