@@ -30,6 +30,8 @@ export class ApiService {
 
 
   put(path: string, body: Object = {}): Observable<any> {
+    console.log("path: "+ path);
+    console.log(JSON.stringify(body));
     return this.http.put(
       `${environment.api_url}${path}`,
       JSON.stringify(body),

@@ -11,6 +11,9 @@ module.exports = {
       price: {
         type: Sequelize.INTEGER
       },
+      type:{
+        type: Sequelize.STRING
+      },
       grandprix_id: {
         type: Sequelize.INTEGER
       },
