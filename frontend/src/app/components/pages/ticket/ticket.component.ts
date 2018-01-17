@@ -21,6 +21,7 @@ export class TicketComponent implements OnInit {
   selectedTicket;
   value;
   userId: string;
+  grandprix;
 
   ngOnInit() {
   }
@@ -55,8 +56,13 @@ export class TicketComponent implements OnInit {
     console.log("ceva");
   }
   onRowSelect(event) {
-    this.displayDialog2 = true;
-    console.log(event.data.id);
+    this.apiService.get('api/grandprix/' + event.data.id).subscribe(res =>{
+      this.grandprix = res;
+      console.log(this.grandprix.location);
+      this.displayDialog2 = true;
+      console.log(event.data.id);
+    });
+    
   }
    
   submit() {
