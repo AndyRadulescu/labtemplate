@@ -60,7 +60,7 @@
 
 <p-dialog appendTo="body" header="Ticket Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
   <h3>Content</h3>
-  <p-dataTable [value]="tickets" [value]="grandprix" selectionMode="single" [(selection)]="selectedTicket" (onRowSelect)="onRowSelect($event)"
+  <p-dataTable [value]="tickets" selectionMode="single" [(selection)]="selectedTicket" (onRowSelect)="onRowSelect($event)"
     [paginator]="true" rows="15" [responsive]="true">
     <p-header>Grandprixes</p-header>
         <p-column field="price" header="Price" [sortable]="true"></p-column>

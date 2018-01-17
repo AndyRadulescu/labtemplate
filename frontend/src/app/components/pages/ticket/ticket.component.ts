@@ -15,7 +15,7 @@ export class TicketComponent implements OnInit {
   displayDialog: boolean;
   displayDialog2: boolean = false;
   constructor(private apiService: ApiService) { }
-  
+
   ticketGpId;
   tickets: any[];
   ticket;
@@ -26,54 +26,61 @@ export class TicketComponent implements OnInit {
 
   ngOnInit() {
   }
+
   buyTicketRussia() {
-    console.log("slaut");
+    console.log("russia");
     this.apiService.get('api/ticket').subscribe(res => {
-      this.ticketGpId = res;
-      let nr = this.ticketGpId.length;
-      let j = 0;
-      for(let i=0;i<nr;i++){
-        console.log("this id"+this.ticketGpId[i].grandprix_id);
-        if(this.ticketGpId[i].grandprix_id == 2){
-          this.tickets[j++] = this.ticketGpId[i];
+      let array = [];
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].user == null && res[i].grandprix.name == 'Russia') {
+          array.push(res[i]);
         }
+        this.tickets = array;
       }
-      console.log("tickets length"+nr);
-    
-          console.log(res);
-      this.displayDialog = true;
+      console.log(array);
     });
     this.displayDialog = true;
   }
+
   buyTicketChina() {
-    console.log("slaut");
+    console.log("china");
     this.apiService.get('api/ticket').subscribe(res => {
-      this.tickets = res;
-      console.log(res);
-      this.displayDialog = true;
+      let array = [];
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].user == null && res[i].grandprix.name == 'China') {
+          array.push(res[i]);
+        }
+        this.tickets = array;
+      }
+      console.log(array);
     });
     this.displayDialog = true;
   }
+
   buyTicketRomania() {
-    console.log("slaut");
+    console.log("ro");
     this.apiService.get('api/ticket').subscribe(res => {
-      this.tickets = res;
-      console.log(res);
-      this.displayDialog = true;
+      let array = [];
+      for (let i = 0; i < res.length; i++) {
+        if (res[i].user == null && res[i].grandprix.name == 'Romania') {
+          array.push(res[i]);
+        }
+        this.tickets = array;
+      }
+      console.log(array);
     });
-    this.displayDialog = true;;
+    this.displayDialog = true;
   }
-  ngModel() {
-    console.log("ceva");
-  }
+
   onRowSelect(event) {
-    this.apiService.get('api/grandprix/' + event.data.id).subscribe(res => {
+    console.log(event.data);
+    this.apiService.get('api/grandprix/' + event.data.grandprix_id).subscribe(res => {
       this.grandprix = res;
       console.log(this.grandprix.location);
       this.displayDialog2 = true;
       console.log(event.data.id);
     });
-
+    this.displayDialog2 = false;
   }
 
   submit() {
@@ -85,6 +92,7 @@ export class TicketComponent implements OnInit {
     this.apiService.put('api/ticket/' + this.selectedTicket.id, this.selectedTicket).subscribe(res => {
       console.log(res);
       this.displayDialog2 = false;
+      this.displayDialog = false;
     });
 
   }
