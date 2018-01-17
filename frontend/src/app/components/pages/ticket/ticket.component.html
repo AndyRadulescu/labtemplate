@@ -60,10 +60,12 @@
 
 <p-dialog appendTo="body" header="Ticket Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
   <h3>Content</h3>
-  <p-dataTable [value]="tickets" selectionMode="single" [(selection)]="selectedTicket" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
+  <p-dataTable [value]="tickets" [value]="grandprix" selectionMode="single" [(selection)]="selectedTicket" (onRowSelect)="onRowSelect($event)"
+    [paginator]="true" rows="15" [responsive]="true">
     <p-header>Grandprixes</p-header>
-    <p-column field="price" header="Price" [sortable]="true">
-    </p-column>
+        <p-column field="price" header="Price" [sortable]="true"></p-column>
+        <p-column field="type" header="Type" [sortable]="true"></p-column>
+        <p-column field="grandprix.location" header="Location" [sortable]="true"></p-column>
     <p-footer>
       <div class="ui-helper-clearfix" style="width:50%">
       </div>
@@ -71,7 +73,7 @@
   </p-dataTable>
 </p-dialog>
 <p-dialog appendTo="body" header="Ticket Details" [(visible)]="displayDialog2" [responsive]="true" showEffect="fade" [modal]="true">
-        <div class="ui-grid-row">
+  <!-- <div class="ui-grid-row">
             <div class="ui-grid-col-4"><label for="userId">Id</label></div>
             <div class="ui-grid-col-8"><input pInputText id="id" [(ngModel)]="userId" /></div>
         </div>
@@ -79,16 +81,18 @@
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
             <button type="button" pButton icon="fa-check" (click)="submit()" label="Save"></button>
         </div>
-    </p-footer>
-  <!-- <div class="ui-g-12 ui-md-4">
+    </p-footer> -->
+  <div class="ui-g-12 ui-md-4">
     <div class="ui-inputgroup">
       <span class="ui-inputgroup-addon">
         <i class="fa fa-user"></i>
       </span>
-      <input type="text" pInputText placeholder="Gibe user Id">
-      <div class="ui-dialog-buttonpane ui-helper-clearfix"> -->
-        <!-- <button type="button" pButton icon="fa-check" (click)="submit()" label="Submit"></button>
+      <input type="text" pInputText placeholder="Give user Id" [(ngModel)]="userId" />
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="fa-check" (click)="submit()" label="Submit">
+          <a class="item" routerLink="/displayDialog"></a>
+        </button>
       </div>
     </div>
-  </div> -->
+  </div>
 </p-dialog>

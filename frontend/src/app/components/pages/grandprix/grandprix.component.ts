@@ -29,12 +29,13 @@ export class GrandprixComponent implements OnInit {
   }
 
   onRowSelect(event) {
+    
     this.apiService.get('api/grandprix/' + event.data.id).subscribe(res => {
       this.selectedGrandprix = res;
       this.grandprix = res;
-      console.log(res);
+      console.log("this is res"+res);
       this.teams = res.teams;
-      console.log(this.teams);
+      console.log("this is teams"+this.teams);
       // let teams = this.selectedGrandprix.teams;
       //console.log(this.selectedGrandprix.teams);
       this.displayDialog = true;
